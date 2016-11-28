@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TimelinePoint {
+@objc open class TimelinePoint : NSObject {
     public var diameter: CGFloat = 6.0 {
         didSet {
             if (diameter < 0.0) {
@@ -18,7 +18,7 @@ public struct TimelinePoint {
             }
         }
     }
-    
+
     public var lineWidth: CGFloat = 2.0 {
         didSet {
             if (lineWidth < 0.0) {
@@ -28,35 +28,35 @@ public struct TimelinePoint {
             }
         }
     }
-    
+
     public var color = UIColor.black
-    
+
     public var isFilled = false
-    
+
     internal var position = CGPoint(x: 0, y: 0)
-    
+
     public init(diameter: CGFloat, lineWidth: CGFloat, color: UIColor, filled: Bool) {
         self.diameter = diameter
         self.lineWidth = lineWidth
         self.color = color
         self.isFilled = filled
     }
-    
-    public init(diameter: CGFloat, color: UIColor, filled: Bool) {
+
+    public convenience init(diameter: CGFloat, color: UIColor, filled: Bool) {
         self.init(diameter: diameter, lineWidth: 2.0, color: color, filled: filled)
     }
-    
-    public init(color: UIColor, filled: Bool) {
+
+    public convenience init(color: UIColor, filled: Bool) {
         self.init(diameter: 6.0, lineWidth: 2.0, color: color, filled: filled)
     }
-    
-    public init() {
-        self.init(diameter: 6.0, lineWidth: 2.0, color: UIColor.black, filled: false)
-    }
-    
+
+    //    public init() {
+    //        self.init(diameter: 6.0, lineWidth: 2.0, color: UIColor.black, filled: false)
+    //    }
+
     public func draw(view: UIView) {
         let path = UIBezierPath(ovalIn: CGRect(x: position.x, y: position.y, width: diameter, height: diameter))
-        
+
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.strokeColor = color.cgColor

@@ -8,7 +8,8 @@
 
 import Foundation
 
-@objc open class Timeline : NSObject {
+@objcMembers
+@objc public class Timeline : NSObject {
     public var width: CGFloat = 2.0 {
         didSet {
             if (width < 0.0) {

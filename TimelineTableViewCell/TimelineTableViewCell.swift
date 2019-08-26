@@ -8,8 +8,8 @@
 
 import UIKit
 
-
-@objc open class TimelineTableViewCell: UITableViewCell {
+@objcMembers
+@objc public class TimelineTableViewCell: UITableViewCell {
 
     @IBOutlet weak open var titleLabel: UILabel!
     @IBOutlet weak open var descriptionLabel: UILabel!
